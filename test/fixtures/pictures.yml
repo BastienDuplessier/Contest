@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  geoloc_lat: 1.5
+  geoloc_long: 1.5
+
+two:
+  geoloc_lat: 1.5
+  geoloc_long: 1.5
