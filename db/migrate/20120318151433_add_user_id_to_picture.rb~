@@ -1,0 +1,5 @@
+class AddUserIdToPicture < ActiveRecord::Migration
+  def change
+    add_column :picture, :user_id, :integer
+  end
+end
