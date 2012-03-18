@@ -1,15 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Geoloc lat:</b>
-  <%= @picture.geoloc_lat %>
+  <b>Posted by:</b>
+  <%= @picture.user.email %>
 </p>
-
-<p>
-  <b>Geoloc long:</b>
-  <%= @picture.geoloc_long %>
-</p>
-
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> |
 <%= link_to 'Back', pictures_path %>
