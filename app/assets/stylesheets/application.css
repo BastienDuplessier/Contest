@@ -11,3 +11,14 @@
  *= require_self
  *= require_tree .
 */
+
+
+.image {
+  width: 100%;
+}
+
+.cont_small {
+  width: 200px;
+  height: 150px;
+  clear: both;
+}

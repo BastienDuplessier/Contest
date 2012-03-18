@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @picture.image %>
+<div class='cont_small'><%= image_tag @picture.image, :class => 'image'%></div>
 <p>
   <b>Posted by:</b>
   <%= @picture.user.email %>

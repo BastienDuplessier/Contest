@@ -43,10 +43,7 @@ class PicturesController < ApplicationController
     if (params[:picture][:user] =~ /^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$/i)
       user = User.where(:email => params[:picture][:user]).first_or_create(:email => params[:picture][:user])
       params[:picture][:user] = user
-      print user
       @picture = Picture.new(params[:picture])
-      @picture.user_id = user.id
-
       respond_to do |format|
 	if @picture.save
 	  format.html { redirect_to @picture, notice: 'Picture was successfully created.' }

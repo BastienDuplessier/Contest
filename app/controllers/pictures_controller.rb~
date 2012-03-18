@@ -44,8 +44,6 @@ class PicturesController < ApplicationController
       user = User.where(:email => params[:picture][:user]).first_or_create(:email => params[:picture][:user])
       params[:picture][:user] = user
       @picture = Picture.new(params[:picture])
-      @picture.user_id = user.id
-
       respond_to do |format|
 	if @picture.save
 	  format.html { redirect_to @picture, notice: 'Picture was successfully created.' }

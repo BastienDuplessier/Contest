@@ -5,6 +5,11 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <b>Images posted</b>
+    <% @user.picture.each do |pic| %>
+      <div class='cont_small'><%= image_tag pic.image, :class => 'image'%></div>
+    <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
