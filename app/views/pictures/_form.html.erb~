@@ -28,8 +28,9 @@
     <% end %>
     <%= f.file_field :image %>
   </div>
-      <%= f.hidden_field :geoloc_lat %>
-      <%= f.hidden_field :geoloc_long %>
+  
+  <%= f.hidden_field :geoloc_lat %>
+  <%= f.hidden_field :geoloc_long %>
 
   <div class="actions">
     <%= f.submit %>
@@ -43,7 +44,7 @@
 	// L’API est disponible
 	navigator.geolocation.getCurrentPosition(function(position) {
 	  $("#picture_geoloc_lat").val(position.coords.latitude); 
-	  $("#picture_geoloc_long").val(position.coords.longitude;
+	  $("#picture_geoloc_long").val(position.coords.longitude);
 	});
       }
       else {

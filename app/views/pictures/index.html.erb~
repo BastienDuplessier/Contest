@@ -1,5 +1,4 @@
 <h1>Listing pictures</h1>
-<script> $(function(){alert('lol');});</script>
 <table>
   <tr>
     <th>Image</th>

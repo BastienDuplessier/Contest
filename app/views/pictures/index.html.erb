@@ -2,8 +2,7 @@
 <table>
   <tr>
     <th>Image</th>
-    <th>Geoloc lat</th>
-    <th>Geoloc long</th>
+    <th>Position géographique</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +12,7 @@
   <tr>
     <td><div class='cont_small'><%= image_tag picture.image, :class => 'image'%></div>
       <p><%= "Posted by #{picture.user.email}" %><p></td>
-    <td><%= picture.geoloc_lat %></td>
-    <td><%= picture.geoloc_long %></td>
+    <td><%= "#{picture.geoloc_lat},#{picture.geoloc_long}" %></td>
     <td><%= link_to 'Show', picture %></td>
     <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
     <td><%= link_to 'Destroy', picture, confirm: 'Are you sure?', method: :delete %></td>
