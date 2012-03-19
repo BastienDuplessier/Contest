@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<div class='cont_small'><%= image_tag @picture.image, :class => 'image'%></div>
+<p>
+  <b>Posted by:</b>
+  <%= @picture.user.email %>
+</p>
+
+<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<%= link_to 'Back', pictures_path %>

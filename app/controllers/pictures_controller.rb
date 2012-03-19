@@ -1,4 +1,7 @@
 class PicturesController < ApplicationController
+  
+  before_filter :check_email, :only => [:create, :update]
+  before_filter :get_user, :only => [:create, :update]
   # GET /pictures
   # GET /pictures.json
   def index
@@ -40,9 +43,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    if (params[:picture][:user] =~ /^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$/i)
-      user = User.where(:email => params[:picture][:user]).first_or_create(:email => params[:picture][:user])
-      params[:picture][:user] = user
+    if @email_valid
       @picture = Picture.new(params[:picture])
       respond_to do |format|
 	if @picture.save
@@ -62,16 +63,21 @@ class PicturesController < ApplicationController
   # PUT /pictures/1
   # PUT /pictures/1.json
   def update
-    @picture = Picture.find(params[:id])
+    if @email_valid
+      @picture = Picture.find(params[:id])
 
-    respond_to do |format|
-      if @picture.update_attributes(params[:picture])
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+      respond_to do |format|
+	if @picture.update_attributes(params[:picture])
+	  format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+	  format.json { head :no_content }
+	else
+	  format.html { render action: "edit" }
+	  format.json { render json: @picture.errors, status: :unprocessable_entity }
+	end
       end
+
+    else
+      redirect_to(pictures_path, :notice => "Sorry, the email address is wrong")
     end
   end
 
@@ -84,6 +90,20 @@ class PicturesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to pictures_url }
       format.json { head :no_content }
+    end
+  end
+  
+  # Check if email of user is valid
+  def check_email
+    @email_valid = (params[:picture][:user] =~ /^([a-zA-Z0-9_-])+([.]?[a-zA-Z0-9_-]{1,})*@([a-zA-Z0-9-_]{2,}[.])+[a-zA-Z]{2,3}$/i)
+  end
+  
+  # Set the params[:picture][:user] at user
+  def get_user
+    user = User.where(:email => params[:picture][:user])
+    if @email_valid
+      user = user.first_or_create(:email => params[:picture][:user])
+      params[:picture][:user] = user
     end
   end
 end
