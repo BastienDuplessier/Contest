@@ -28,8 +28,27 @@
     <% end %>
     <%= f.file_field :image %>
   </div>
+      <%= f.hidden_field :geoloc_lat %>
+      <%= f.hidden_field :geoloc_long %>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+<!-- HTML5 API used to find user's geographics position -->
+<% if @picture.user.nil? %>
+  <script type="text/javascript">
+    $(function(){
+      if (navigator.geolocation) {
+	// L’API est disponible
+	navigator.geolocation.getCurrentPosition(function(position) {
+	  $("#picture_geoloc_lat").val(position.coords.latitude); 
+	  $("#picture_geoloc_long").val(position.coords.longitude);
+	});
+      }
+      else {
+	// Pas de support
+      }
+    });
+  </script>
 <% end %>

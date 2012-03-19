@@ -1,9 +1,10 @@
 Contest::Application.routes.draw do
-  root :to => "Pictures#index"
   resources :pictures
-
   resources :users
   
+  # Root route to pictures/index
+  root :to => "Pictures#index"
+  # Redirections
   match 'all' => redirect('/pictures')
   # The priority is based upon order of creation:
   # first created -> highest priority.
